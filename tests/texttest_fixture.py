@@ -2,8 +2,8 @@
 
 if __name__ == "__main__":
     import sys
-    from gilded_rose import GildedRose
-    from tests.fixture import items
+    from ..gilded_rose import GildedRose
+    from fixture import items
     days = 2
     if len(sys.argv) > 1:
         days = int(sys.argv[1]) + 1
