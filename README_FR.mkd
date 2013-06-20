@@ -56,6 +56,10 @@ si besoin, on vous couvre pour cela).
 Juste pour être plus clair, la qualité d'un article ne peut dépasser 50, hormis
 celle du légendaire "Sulfuras" qui demeure à 80 et ne varie pas.
 
+Pour terminer, certains de nos fidèles clients sont des amateurs des belles oeuvres et
+si vous parvenez à les captiver en expliquant avec le terme technique les modifications
+que vous vous apprétez à faire, nous vous récompenseront avec une chopine de Miruvor.
+
 Source: <http://www.iamnotmyself.com/2011/02/13/RefactorThisTheGildedRoseKata.aspx>
 
 Code Source: <https://github.com/emilybache/GildedRose-Refactoring-Kata.git>
