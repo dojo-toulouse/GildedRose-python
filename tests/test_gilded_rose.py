@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 import unittest
-
-from ..gilded_rose import Item, GildedRose
+import os
+import sys
+parentDir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, parentDir)
+from gilded_rose import Item, GildedRose
 
 
 class GildedRoseTest(unittest.TestCase):
