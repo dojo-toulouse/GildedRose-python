@@ -13,13 +13,12 @@ Votre travail, si vous l'acceptez, est d'ajouter une nouvelle fonctionnalité
 
 Tout d'abord une introduction à notre système:
 
-  - Tous nos articles ont une date limite qui indique le nombre de jours qu'il nous
-    reste pour les vendre.
+  - Tous nos articles ont une date limite qui indique le délai de vente.
 
   - Tous nos articles ont un indice de qualité qui nous permet de connaitre leur valeur
 
-  - À la fin de chaque jour notre système met à jour la qualité et la date limite de
-    tous nos articles.
+  - À la fin de chaque jour notre système met à jour la qualité en fonction
+    de la date limite de vente des articles.
 
 Rien de compliqué, pas vrai? Bien maintenant la partie la plus intéressante:
 
