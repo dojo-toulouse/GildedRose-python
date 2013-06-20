@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 class GildedRose(object):
 
     def __init__(self, items):
@@ -35,7 +36,7 @@ class GildedRose(object):
                     if item.quality < 50:
                         item.quality = item.quality + 1
 
-    
+
 class Item:
     def __init__(self, name, sell_in, quality):
         self.name = name
