@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-from ..gilded_rose import Item
+import os
+import sys
+parentDir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, parentDir)
+from gilded_rose import Item
 
 items = [
     Item(name="+5 Dexterity Vest", sell_in=10, quality=20),

@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
 from copy import deepcopy
 import unittest
+parentDir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, parentDir)
 
-from ..gilded_rose import GildedRose
+from gilded_rose import GildedRose
 from fixture import items
 
 
