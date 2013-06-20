@@ -1,0 +1,61 @@
+Bonjour et bienvenue dans l'équipe Gilded Rose.
+
+Comme vous le savez, vous vous trouvez dand notre petite auberge au coeur
+d'une grande ville, tenue par notre charmante aubergiste Allison.
+Nous achetons et vendons uniquement les meilleurs produits.
+Seulement, la qualité de nos produits baisse constamment au fur et à mesure
+qu'ils approchent de leur date de péremption.
+
+Nous avons mis en place un système qui met à jour notre inventaire automatiquement.
+Il a été développé par Leeroy, qui est parti pour d'autres aventures.
+Votre travail, si vous l'acceptez, est d'ajouter une nouvelle fonctionnalité
+à notre système afin que nous puissions vendre une nouvelle catégorie d'article.
+
+Tout d'abord une introduction à notre système:
+
+  - Tous nos articles ont une date limite qui indique le nombre de jours qu'il nous
+    reste pour les vendre.
+
+  - Tous nos articles ont un indice de qualité qui nous permet de connaitre leur valeur
+
+  - À la fin de chaque jour notre système met à jour la qualité et la date limite de
+    tous nos articles.
+
+Rien de compliqué, pas vrai? Bien maintenant la partie la plus intéressante:
+
+  - Lorsqu'une date limite est dépassée, la Qualité diminue deux fois plus vite
+
+  - La qualité d'un article ne peut jamais être négative
+
+  - "le vieu brie" devient de meilleure qualité avec le temps
+
+  - La qualité d'un article ne dépasse jamais 50
+
+  - "Sulfuras", un article légendaire, ne peut pas être vendu et sa qualité diminuée
+
+  - "Passes Backstage", comme le "vieu brie", voient leur qualité accroitre lorsque
+    leur date de vente limite approche; La qualité augmente de 2 lorsuq'il reste
+    moins de 10 jours et de 3 lorqu'il reste moins de 5 jours mais elle chute à 0 après
+    le concert
+
+Nous avons depuis peu un fournisseur d'objets ensorcellés qui nous contraint
+de mettre à jour notre système:
+
+  - la qualité des "objets ensorcellés" diminue 2 fois plus vite que celle des
+    articles normaux
+
+Vous pouvez modifier à votre guise la méthode UpdateQuality et ajouter tous
+le code que vous souhaitez du moment que tout fonctionne correctement.
+Cependant, vous ne pouvez pas modifier nos articles ou leurs propriétés qui
+dépendent du Gobelin du coin qui va se mettre dans une rage foudroyante et
+vous frapper violement vu qu'il n'adhère pas au principe de responsabilité collective
+du code.
+(vous pouvez définir à statique la méthode UpdateQuality et les propriétés des articles,
+si besoin, on vous couvre pour cela).
+
+Juste pour être plus clair, la qualité d'un article ne peut dépasser 50, hormis
+celle du légendaire "Sulfuras" qui demeure à 80 et ne varie pas.
+
+Source: <http://www.iamnotmyself.com/2011/02/13/RefactorThisTheGildedRoseKata.aspx>
+
+Code Source: <https://github.com/emilybache/GildedRose-Refactoring-Kata.git>
