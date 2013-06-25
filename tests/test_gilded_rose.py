@@ -17,6 +17,7 @@ class GildedRoseTest(unittest.TestCase):
         self.AgedBrie = self.items[1]
         self.SulfurasItem = self.items[3]
         self.BackstagePass = self.items[5]
+        self.conjuredItem = self.items[8]
 
     def test_item_as_a_sellIn_value(self):
         self.assertTrue(hasattr(self.basicItem, 'sell_in'))
@@ -67,6 +68,16 @@ class GildedRoseTest(unittest.TestCase):
         self._go_to_last_sellIn_date(self.BackstagePass)
         self._update_quality_of(self.BackstagePass)
         self.assertEquals(0, self.BackstagePass.quality)
+
+    def test_Conjured_quality_decreases_by_2_each_day(self):
+        self._assertQualityDecreasesBy(self.conjuredItem, 2)
+
+    def test_Conjured_sellIn_decreases_each_day(self):
+        self._assertSellInDecreasesBy(self.conjuredItem)
+
+    def test_once_the_sell_by_date_passed_Conjured_quality_degrades_four_times(self):
+        self._go_to_last_sellIn_date(self.conjuredItem)
+        self._assertQualityDecreasesBy(self.conjuredItem, 4)
 
 # Assertions :
     def _assertQualityIncreasesBy(self, item, gain=1):

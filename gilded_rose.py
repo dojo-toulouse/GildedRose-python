@@ -58,12 +58,19 @@ class SulfurasUpdater(DefaultUpdater):
         pass
 
 
+class ConjuredUpdater(DefaultUpdater):
+    def decrease_quality(self):
+        DefaultUpdater.decrease_quality(self)
+        DefaultUpdater.decrease_quality(self)
+
+
 class ItemUpdaterFactory(object):
 
     class_mapping = {
         "Aged Brie": AgedBrieUpdater,
         "Sulfuras, Hand of Ragnaros": SulfurasUpdater,
-        "Backstage passes to a TAFKAL80ETC concert": BackStageUpdater
+        "Backstage passes to a TAFKAL80ETC concert": BackStageUpdater,
+        "Conjured Mana Cake": ConjuredUpdater
     }
 
     @classmethod
