@@ -5,20 +5,31 @@ class GildedRose(object):
 
     max_quality = 50
     aged_brie = "Aged Brie"
+    sulfuras = "Sulfuras, Hand of Ragnaros"
+    backstage = "Backstage passes to a TAFKAL80ETC concert"
+
+    days_threshold_min = 11
+    days_threshold_max = 6
 
 
     def __init__(self, items):
         self.items = items
 
+    def is_sulfuras(self, item):
+        return item.name == self.sulfuras
+
     def is_aged_brie(self, item):
-        return item.name == self.aged_brie  
+        return item.name == self.aged_brie 
 
     def is_backstage(self,item):
-        return item.name == "Backstage passes to a TAFKAL80ETC concert"
+        return item.name == self.backstage
 
     def decrease_quality(self, item):
         if item.quality > 0:
                 item.quality = item.quality - 1
+
+    def reset_quality(self, item):
+        item.quality = 0
 
     def increase_quality(self, item):
         if item.quality < self.max_quality:
@@ -26,14 +37,14 @@ class GildedRose(object):
 
     def update_backstage_quality(self, item):
         if self.is_backstage(item):
-            if item.sell_in < 11:
+            if item.sell_in < self.days_threshold_min:
                 self.increase_quality(item)
-            if item.sell_in < 6:
+            if item.sell_in < self.days_threshold_max:
                 self.increase_quality(item)
 
     def update_quality(self):
         for item in self.items:
-            if item.name == "Sulfuras, Hand of Ragnaros":
+            if self.is_sulfuras(item):
                 continue
             if not self.is_aged_brie(item) and not self.is_backstage(item):
                 self.decrease_quality(item)
@@ -48,7 +59,7 @@ class GildedRose(object):
                     if not self.is_backstage(item):
                         self.decrease_quality(item)
                     else:
-                        item.quality = item.quality - item.quality
+                        self.reset_quality(item)
                 else:
                     self.increase_quality(item)
 
