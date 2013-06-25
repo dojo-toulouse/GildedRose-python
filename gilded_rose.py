@@ -1,28 +1,45 @@
 # -*- coding: utf-8 -*-
 
+class ItemUpdaterFactory(object):
+    aged_brie = "Aged Brie"
+    sulfuras = "Sulfuras, Hand of Ragnaros"
+    backstage = "Backstage passes to a TAFKAL80ETC concert"
+
+    @classmethod
+    def is_sulfuras(cls, item):
+        return item.name == cls.sulfuras
+
+    @classmethod
+    def is_aged_brie(cls, item):
+        return item.name == cls.aged_brie
+
+    @classmethod
+    def is_backstage(cls,item):
+        return item.name == cls.backstage
+
+    @classmethod
+    def create(cls, item):
+        pass
+
 
 class GildedRose(object):
 
     max_quality = 50
-    aged_brie = "Aged Brie"
-    sulfuras = "Sulfuras, Hand of Ragnaros"
-    backstage = "Backstage passes to a TAFKAL80ETC concert"
     
     days_threshold_min = 10
     days_threshold_max = 5
-
 
     def __init__(self, items):
         self.items = items
 
     def is_sulfuras(self, item):
-        return item.name == self.sulfuras
+        return ItemUpdaterFactory.is_sulfuras(item)
 
     def is_aged_brie(self, item):
-        return item.name == self.aged_brie 
+        return ItemUpdaterFactory.is_aged_brie(item)
 
-    def is_backstage(self,item):
-        return item.name == self.backstage
+    def is_backstage(self, item):
+        return ItemUpdaterFactory.is_backstage(item)
 
     def decrease_quality(self, item):
         if item.quality > 0:
