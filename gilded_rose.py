@@ -19,7 +19,32 @@ class ItemUpdaterFactory(object):
 
     @classmethod
     def create(cls, item):
+        if cls.is_aged_brie(item):
+            return AgedBrieUpdater(item)
+        if cls.is_backstage(item):
+            return BackStageUpdater(item)
+        if cls.is_sulfuras(item):
+            return SulfurasUpdater(item)
+        return DefaultUpdater(item)
+
+
+class DefaultUpdater(object):
+    def __init__(self, item):
+        self.item = item
+    def update_quality(self):
         pass
+
+
+class AgedBrieUpdater(DefaultUpdater):
+    pass
+
+
+class BackStageUpdater(DefaultUpdater):
+    pass
+
+
+class SulfurasUpdater(DefaultUpdater):
+    pass
 
 
 class GildedRose(object):
