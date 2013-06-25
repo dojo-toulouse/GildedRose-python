@@ -7,7 +7,7 @@ class GildedRose(object):
     aged_brie = "Aged Brie"
     sulfuras = "Sulfuras, Hand of Ragnaros"
     backstage = "Backstage passes to a TAFKAL80ETC concert"
-
+    
     days_threshold_min = 11
     days_threshold_max = 6
 
@@ -35,6 +35,9 @@ class GildedRose(object):
         if item.quality < self.max_quality:
                 item.quality = item.quality + 1
 
+    def decrease_sell_in(self, item):
+        item.sell_in = item.sell_in - 1
+
     def update_backstage_quality(self, item):
         if self.is_backstage(item):
             if item.sell_in < self.days_threshold_min:
@@ -52,16 +55,16 @@ class GildedRose(object):
                 self.increase_quality(item)
                 self.update_backstage_quality(item)
             
-            item.sell_in = item.sell_in - 1
+            self.decrease_sell_in(item)
 
             if item.sell_in < 0:
-                if not self.is_aged_brie(item):
+                if self.is_aged_brie(item):
+                    self.increase_quality(item)
+                else:
                     if not self.is_backstage(item):
                         self.decrease_quality(item)
                     else:
                         self.reset_quality(item)
-                else:
-                    self.increase_quality(item)
 
 
 class Item:
