@@ -29,15 +29,22 @@ class ItemUpdaterFactory(object):
 
 
 class DefaultUpdater(object):
+    max_quality = 50
+
     def __init__(self, item):
         self.item = item
+
+    def increase_quality(self):
+        if self.item.quality < self.max_quality:
+            self.item.quality = self.item.quality + 1
+
     def update_quality(self):
         pass
 
 
 class AgedBrieUpdater(DefaultUpdater):
-    pass
-
+    def update_quality(self):
+        pass
 
 class BackStageUpdater(DefaultUpdater):
     pass
@@ -48,9 +55,8 @@ class SulfurasUpdater(DefaultUpdater):
 
 
 class GildedRose(object):
-
     max_quality = 50
-    
+
     days_threshold_min = 10
     days_threshold_max = 5
 
@@ -81,31 +87,37 @@ class GildedRose(object):
         item.sell_in = item.sell_in - 1
 
     def update_backstage_quality(self, item):
-        if self.is_backstage(item):
-            if item.sell_in <= self.days_threshold_min:
-                self.increase_quality(item)
-            if item.sell_in <= self.days_threshold_max:
-                self.increase_quality(item)
+        self.increase_quality(item)
+        if item.sell_in <= self.days_threshold_min:
+            self.increase_quality(item)
+        if item.sell_in <= self.days_threshold_max:
+            self.increase_quality(item)
+        self.decrease_sell_in(item)
+        if item.sell_in < 0:
+            self.reset_quality(item)
+
+    def update_aged_brie(self, item):
+        self.increase_quality(item)
+        self.decrease_sell_in(item)
+        if item.sell_in < 0:
+            self.increase_quality(item)
 
     def update_item_quality(self, item):
-        if self.is_aged_brie(item) or self.is_backstage(item):
-            self.increase_quality(item)
-            self.update_backstage_quality(item)
+        if self.is_aged_brie(item):
+            self.update_aged_brie(item)
         else:
-            self.decrease_quality(item)
-        
-        self.decrease_sell_in(item)
-
-        if item.sell_in < 0:
-            if self.is_aged_brie(item):
-                self.increase_quality(item)
-            elif self.is_backstage(item):
-                self.reset_quality(item)
+            if self.is_backstage(item):
+                self.update_backstage_quality(item)
             else:
                 self.decrease_quality(item)
+                self.decrease_sell_in(item)
+
+                if item.sell_in < 0:
+                    self.decrease_quality(item)
 
     def update_quality(self):
         for item in self.items:
+            itemUpdater = ItemUpdaterFactory.create(item)
             if not self.is_sulfuras(item):
                 self.update_item_quality(item)
 
