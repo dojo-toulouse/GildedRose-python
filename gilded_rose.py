@@ -45,25 +45,27 @@ class GildedRose(object):
             if item.sell_in <= self.days_threshold_max:
                 self.increase_quality(item)
 
-    def update_quality(self):
-        for item in self.items:
-            if self.is_sulfuras(item):
-                continue
-            if self.is_aged_brie(item) or self.is_backstage(item):
+    def update_item_quality(self, item):
+        if self.is_aged_brie(item) or self.is_backstage(item):
+            self.increase_quality(item)
+            self.update_backstage_quality(item)
+        else:
+            self.decrease_quality(item)
+        
+        self.decrease_sell_in(item)
+
+        if item.sell_in < 0:
+            if self.is_aged_brie(item):
                 self.increase_quality(item)
-                self.update_backstage_quality(item)
+            elif self.is_backstage(item):
+                self.reset_quality(item)
             else:
                 self.decrease_quality(item)
-            
-            self.decrease_sell_in(item)
 
-            if item.sell_in < 0:
-                if self.is_aged_brie(item):
-                    self.increase_quality(item)
-                elif self.is_backstage(item):
-                    self.reset_quality(item)
-                else:
-                    self.decrease_quality(item)
+    def update_quality(self):
+        for item in self.items:
+            if not self.is_sulfuras(item):
+                self.update_item_quality(item)
 
 
 class Item:
