@@ -3,6 +3,10 @@
 
 class GildedRose(object):
 
+    max_quality = 50
+
+
+
     def __init__(self, items):
         self.items = items
 
