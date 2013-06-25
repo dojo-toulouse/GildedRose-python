@@ -18,6 +18,13 @@ class GildedRose(object):
         if item.quality < self.max_quality:
                 item.quality = item.quality + 1
 
+    def update_backstage_quality(self, item):
+        if item.name == "Backstage passes to a TAFKAL80ETC concert":
+            if item.sell_in < 11:
+                self.increase_quality(item)
+            if item.sell_in < 6:
+                self.increase_quality(item)
+
     def update_quality(self):
         for item in self.items:
             if item.name == "Sulfuras, Hand of Ragnaros":
@@ -26,11 +33,7 @@ class GildedRose(object):
                 self.decrease_quality(item)
             else:
                 self.increase_quality(item)
-                if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                    if item.sell_in < 11:
-                        self.increase_quality(item)
-                    if item.sell_in < 6:
-                        self.increase_quality(item)
+                self.update_backstage_quality(item)
             
             item.sell_in = item.sell_in - 1
 
