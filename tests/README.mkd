@@ -1,0 +1,22 @@
+# Gilded rose
+- BackStage pass quality drops to 0 after concert
+- BackStage pass quality increases by 2 after 10 days before concert
+- BackStage pass quality increases by 3 after 5 days before concert
+- BackStage pass quality increases each day
+- Conjured quality decreases by 2 each day
+- Conjured sellIn decreases each day
+- Sulfuras never decreases in quality
+- Sulfuras never has to be sold
+- agedBrie quality increases each day
+- item as a quality value
+- item as a sellIn value
+- item quality decreases each day
+- item sellIn decreases each day
+- once the sell by date passed Conjured quality degrades four times
+- once the sell by date passed quality degrades twice
+- quality is never more than 50
+- quality is never negative
+
+*Ran 17 tests in 0.023 seconds*
+**OK** 
+
