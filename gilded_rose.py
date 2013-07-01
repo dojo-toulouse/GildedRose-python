@@ -75,7 +75,7 @@ class ItemUpdaterFactory(object):
 
     @classmethod
     def create(cls, item):
-        if item.name in cls.class_mapping :
+        if item.name in cls.class_mapping:
             return cls.class_mapping[item.name](item)
         return DefaultUpdater(item)
 
